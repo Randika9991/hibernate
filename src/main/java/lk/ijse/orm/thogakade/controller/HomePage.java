@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
-
 import java.io.IOException;
 
 public class HomePage {
@@ -17,8 +16,10 @@ public class HomePage {
     private AnchorPane adminAncPane;
 
     @FXML
-    void ItemOnAction(ActionEvent event) {
-
+    void ItemOnAction(ActionEvent event) throws IOException {
+        Parent load = FXMLLoader.load(getClass().getResource("/lk.ijse.orm.view/itemdashboard.fxml"));
+        adminAncPane.getChildren().clear();
+        adminAncPane.getChildren().add(load);
     }
 
     @FXML
@@ -34,5 +35,4 @@ public class HomePage {
     void orderOnAction(ActionEvent event) {
 
     }
-
 }

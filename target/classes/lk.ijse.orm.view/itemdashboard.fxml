@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.orm.thogakade.controller.ItemController">
+   <children>
+      <ImageView fitHeight="866.0" fitWidth="1280.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../lk.ijse.orm.assets/studio-background-concept-dark-gradient-purple-studio-room-background-product.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="494.0" layoutY="54.0" prefHeight="55.0" prefWidth="187.0" text="ITEM FORM" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Label>
+      <Label layoutX="181.0" layoutY="178.0" text="Item Code" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="790.0" layoutY="178.0" text="Item description" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="182.0" layoutY="279.0" text="Item Price" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="790.0" layoutY="279.0" text="Item qtyOnHand" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtItenCode" focusColor="WHITE" layoutX="181.0" layoutY="217.0" prefHeight="35.0" prefWidth="205.0" styleClass="EmloyeeTxtColour" stylesheets="@../lk.ijse.orm.style/style.css" />
+      <JFXTextField fx:id="txtItemDescrip" focusColor="WHITE" layoutX="790.0" layoutY="217.0" prefHeight="35.0" prefWidth="205.0" styleClass="EmloyeeTxtColour" stylesheets="@../lk.ijse.orm.style/style.css" />
+      <JFXTextField fx:id="txtItemPrice" focusColor="WHITE" layoutX="181.0" layoutY="318.0" prefHeight="35.0" prefWidth="205.0" styleClass="EmloyeeTxtColour" stylesheets="@../lk.ijse.orm.style/style.css" />
+      <JFXTextField fx:id="txtItemQOH" focusColor="WHITE" layoutX="790.0" layoutY="318.0" prefHeight="35.0" prefWidth="205.0" styleClass="EmloyeeTxtColour" stylesheets="@../lk.ijse.orm.style/style.css" />
+      <JFXButton layoutX="962.0" layoutY="410.0" onAction="#saveOnAction" prefHeight="28.0" prefWidth="91.0" styleClass="EmloyeeButtonStyle" stylesheets="@../lk.ijse.orm.style/style.css" text="Save" textFill="WHITE" />
+      <JFXButton layoutX="853.0" layoutY="410.0" onAction="#deleteOnAction" prefHeight="28.0" prefWidth="91.0" styleClass="EmloyeeButtonStyle" stylesheets="@../lk.ijse.orm.style/style.css" text="Delete" textFill="WHITE" />
+      <JFXButton layoutX="745.0" layoutY="410.0" onAction="#updateOnAction" prefHeight="28.0" prefWidth="91.0" styleClass="EmloyeeButtonStyle" stylesheets="@../lk.ijse.orm.style/style.css" text="Update" textFill="WHITE" />
+      <TableView fx:id="mainCOMItem" layoutX="120.0" layoutY="462.0" onMouseClicked="#CsstOnMouse" prefHeight="279.0" prefWidth="935.0">
+         <columns>
+            <TableColumn fx:id="COMItemCode" prefWidth="211.0" text="Item Code" />
+            <TableColumn fx:id="COMItemAddress" prefWidth="254.0" text="Item description" />
+            <TableColumn fx:id="COMItemPrice" prefWidth="217.0" text="Item Price" />
+            <TableColumn fx:id="COMQOH" prefWidth="231.0" text="Item qtyOnHand" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

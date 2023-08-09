@@ -4,47 +4,49 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lk.ijse.orm.thogakade.config.SessionFactoryConfig;
 import lk.ijse.orm.thogakade.dto.tm.CustomerTm;
+import lk.ijse.orm.thogakade.dto.tm.ItemTm;
 import lk.ijse.orm.thogakade.entity.Customer;
+import lk.ijse.orm.thogakade.entity.Item;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class CustomerRepository {
+public class ItemRepository {
     private final Session session;
 
-    public CustomerRepository(){
+    public ItemRepository(){
         session= SessionFactoryConfig.getInstance().getSession();
     }
 
-    public Customer getStudent(int id) {
+    public Item getStudent(String id) {
         try {
-            return session.get(Customer.class, id);
+            return session.get(Item.class, id);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
         }
     }
 
-    public boolean saveCustomer(Customer customer) {
+    public boolean saveItem(Item customer) {
         Transaction transaction = session.beginTransaction();
         try {
-            int customerId = (int)session.save(customer);
+            String customerId = (String)session.save(customer);
             transaction.commit();
             session.close();
             return true;
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
             transaction .rollback();
             session.close();
             return false;
         }
     }
 
-    public boolean updateCustomer(Customer customer) {
+    public boolean updateItem(Item item) {
         Transaction transaction1 = session.beginTransaction();
         try {
-            session.update(customer);   //session updated(customer1)  --->me dekenma puluwan
+            session.update(item);   //session updated(customer1)  --->me dekenma puluwan
             transaction1.commit();
             session.close();
             return true;
@@ -55,10 +57,10 @@ public class CustomerRepository {
         }
     }
 
-    public boolean deleteCustomer(Customer customer) {
+    public boolean deleteItem(Item item) {
         Transaction deleateTransaction = session.beginTransaction();
         try {
-            session.delete(customer);
+            session.delete(item);
             deleateTransaction.commit();
             session.close();
             return true;
@@ -69,26 +71,21 @@ public class CustomerRepository {
         }
     }
 
-    public ObservableList<CustomerTm> getAllCustomer() {
+    public ObservableList<ItemTm> getAllItem() {
         Transaction transaction = session.beginTransaction();
-        int id = 0;
+        String id = "";
         try {
-            List<Customer> customers = session.createQuery("from Customer", Customer.class).list();
-            ObservableList<CustomerTm> dataList = FXCollections.observableArrayList();
-            for (Customer customer1 : customers) {
-                id=customer1.getCustId();
-                Customer nr = session.get(Customer.class, id);
-                dataList.add(new CustomerTm(
-                        nr.getCustId(),
-                        nr.getCustName(),
-                        nr.getCustAddress(),
-                        nr.getCustSalary()
+            List<Item> items = session.createQuery("from Item", Item.class).list();
+            ObservableList<ItemTm> dataList = FXCollections.observableArrayList();
+            for (Item item : items) {
+                id=item.getItemCode();
+                Item nr = session.get(Item.class, id);
+                dataList.add(new ItemTm(
+                        nr.getItemCode(),
+                        nr.getItemDescription(),
+                        nr.getUnitPrice(),
+                        nr.getQtyOnHand()
                 ));
-
-                /*System.out.println(nr.getCustId());
-                System.out.println(nr.getCustName());
-                System.out.println(nr.getCustAddress());
-                System.out.println(nr.getCustSalary());*/
             }
             transaction.commit();
             session.close();

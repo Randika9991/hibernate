@@ -4,17 +4,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import lk.ijse.orm.thogakade.config.SessionFactoryConfig;
+import org.hibernate.Session;
 
 import java.net.URL;
 
 public class Launcher extends Application {
     public static void main(String[] args) {
         launch();
-
     }
     @Override
     public void start(Stage stage) throws Exception {
-     URL resource = Launcher.class.getResource("lk.ijse.orm.view/cashierdashboard.fxml");
+        //Session session = SessionFactoryConfig.getInstance().getSession();
+        URL resource = Launcher.class.getResource("lk.ijse.orm.view/cashierdashboard.fxml");
         Parent load = FXMLLoader.load(resource);
 
         stage.setScene(new Scene(load));
@@ -23,6 +25,4 @@ public class Launcher extends Application {
         stage.centerOnScreen();
         stage.show();
     }
-
-
 }

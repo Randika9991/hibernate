@@ -1,7 +1,6 @@
 package lk.ijse.orm.thogakade.config;
-
-
 import lk.ijse.orm.thogakade.entity.Customer;
+import lk.ijse.orm.thogakade.entity.Item;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -17,9 +16,10 @@ public class SessionFactoryConfig {
            /* StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().configure().build();
             Metadata metadata = new MetadataSources(serviceRegistry).addAnnotatedClass(Student.class).getMetadataBuilder().applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE).build();
            */ /*SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();*/
-        sessionFactory = new Configuration().configure().addAnnotatedClass(Customer.class).buildSessionFactory();
-    }
+        sessionFactory = new Configuration().configure().addAnnotatedClass(Customer.class).addAnnotatedClass(Item.class)
+                .buildSessionFactory();
 
+    }
 
     public Session getSession() {
         return sessionFactory.openSession();
